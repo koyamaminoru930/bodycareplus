@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アクセス・店舗情報｜Body care plus</title>
+<meta name="description" content="Body care plusは御茶ノ水駅徒歩1分、完全予約制の整体院です。営業時間や店舗情報はこちらからご確認ください。">
+<link rel="canonical" href="./access.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Body care <span>plus</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="index.html#concept">コンセプト</a></li>
+        <li><a href="index.html#services">施術内容</a></li>
+        <li><a href="menu.html">メニュー</a></li>
+        <li><a href="access.html" class="active">アクセス</a></li>
+        <li><a href="contact.html">ご予約</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Access</p>
+      <h1>アクセス・店舗情報</h1>
+      <p>御茶ノ水駅から徒歩1分。落ち着いた環境で施術を受けていただけます。</p>
+    </div>
+  </section>
+
+  <section class="access" style="padding-top:0;">
+    <div class="wrap access-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:30px;">
+          <p class="section-num" style="color:var(--brass);">Information</p>
+          <h2 style="color:var(--paper);">店舗情報</h2>
+        </div>
+        <dl>
+          <dt>店名</dt><dd>Body care plus</dd>
+          <dt>アクセス</dt><dd>御茶ノ水駅 徒歩1分</dd>
+          <dt>予約</dt><dd>完全予約制</dd>
+          <dt>平日</dt><dd>19:00 〜 23:00</dd>
+          <dt>土日祝</dt><dd>13:00 〜 23:00</dd>
+        </dl>
+        <a href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E8%8C%B6%E3%83%8E%E6%B0%B4%E9%A7%85" target="_blank" rel="noopener" class="map-link">
+          Google マップで御茶ノ水駅を見る ↗
+        </a>
+      </div>
+      <div>
+        <div class="section-head" style="margin-bottom:30px;">
+          <p class="section-num" style="color:var(--brass);">Notice</p>
+          <h2 style="color:var(--paper);">ご来院にあたって</h2>
+        </div>
+        <p style="color:#dfe3e0; font-size:14.5px; max-width:420px;">
+          当院は完全予約制のため、当日のご来院前に必ずLINE・Instagramのいずれかからご予約をお願いいたします。
+          ご不明な点があれば、お気軽にお問い合わせください。
+        </p>
+        <a href="contact.html" class="btn btn-ghost" style="margin-top:26px; border-color:var(--paper); color:var(--paper);">ご予約・お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo mincho">Body care plus</span><br>
+    御茶ノ水駅 徒歩1分 ・ 完全予約制<br>
+    <a href="index.html">トップ</a> ・ <a href="menu.html">メニュー</a> ・ <a href="contact.html">ご予約</a><br>
+    &copy; 2026 Body care plus
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="assets/line-qr.png" target="_blank" rel="noopener"><span class="ico">💬</span>LINE</a>
+  <a href="https://www.instagram.com/body.care.plus?igsh=dmV2ajZ1d2Z6M24w&utm_source=qr" target="_blank" rel="noopener" class="primary"><span class="ico">📷</span>Instagram</a>
+</div>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const list = document.getElementById('navList');
+  toggle.addEventListener('click', () => {
+    const isOpen = list.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  list.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    list.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

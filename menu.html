@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メニュー・料金｜Body care plus</title>
+<meta name="description" content="Body care plusのメニュー・料金一覧。整体（姿勢改善）、美容鍼、リフトアップ整体、オーダーメイドインソールなど、税込価格でご案内します。">
+<link rel="canonical" href="./menu.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Body care <span>plus</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">トップ</a></li>
+        <li><a href="index.html#concept">コンセプト</a></li>
+        <li><a href="index.html#services">施術内容</a></li>
+        <li><a href="menu.html" class="active">メニュー</a></li>
+        <li><a href="access.html">アクセス</a></li>
+        <li><a href="contact.html">ご予約</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Menu</p>
+      <h1>メニュー・料金</h1>
+      <p>価格はすべて税込表示です。症状やお悩みに合わせて最適な施術をご提案します。</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="menu-table">
+        <div class="menu-row">
+          <div>
+            <div class="name">整体（姿勢改善）</div>
+            <div class="desc">骨格・筋肉のバランスを整え、姿勢の崩れの原因からアプローチする施術です。</div>
+            <span class="first">初回 ¥2,200</span>
+          </div>
+          <div class="time">50分</div>
+          <div class="price">¥12,100</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">美容鍼</div>
+            <div class="desc">表情筋や肌のハリにアプローチし、内側からの若々しさを引き出す鍼施術です。</div>
+            <span class="first">初回 ¥2,200</span>
+          </div>
+          <div class="time">40分</div>
+          <div class="price">¥16,500</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">リフトアップ整体</div>
+            <div class="desc">姿勢を整えながら顔まわりの引き上げも目指す、じっくり80分のコースです。</div>
+          </div>
+          <div class="time">80分</div>
+          <div class="price">¥24,200</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">オーダーメイドインソール</div>
+            <div class="desc">一人ひとりの足の形・歩き方に合わせて作成する、体を支えるインソールです。</div>
+          </div>
+          <div class="time">―</div>
+          <div class="price">¥33,000</div>
+        </div>
+      </div>
+      <p class="menu-note">
+        ※ 初回料金は「整体（姿勢改善）」「美容鍼」が対象です。<br>
+        ※ 当院は完全予約制です。事前にLINE・Instagramよりご予約ください。
+      </p>
+      <div style="margin-top:48px;">
+        <a href="contact.html" class="btn btn-primary">このメニューで予約する</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo mincho">Body care plus</span><br>
+    御茶ノ水駅 徒歩1分 ・ 完全予約制<br>
+    <a href="index.html">トップ</a> ・ <a href="access.html">アクセス</a> ・ <a href="contact.html">ご予約</a><br>
+    &copy; 2026 Body care plus
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="assets/line-qr.png" target="_blank" rel="noopener"><span class="ico">💬</span>LINE</a>
+  <a href="https://www.instagram.com/body.care.plus?igsh=dmV2ajZ1d2Z6M24w&utm_source=qr" target="_blank" rel="noopener" class="primary"><span class="ico">📷</span>Instagram</a>
+</div>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const list = document.getElementById('navList');
+  toggle.addEventListener('click', () => {
+    const isOpen = list.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  list.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    list.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
