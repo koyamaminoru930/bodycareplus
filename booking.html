@@ -239,6 +239,17 @@
       <h2 class="section-title">1. メニューを選択してください</h2>
       <div id="menu-list"></div>
     </div>
+    <p style="text-align:center;margin:0;">
+      <a href="javascript:void(0)" onclick="goTo('mybookings'); loadMyBookings();" style="font-size:12.5px;color:var(--green-dark);text-decoration:underline;">ご予約の確認・キャンセルはこちら</a>
+    </p>
+  </div>
+
+  <div id="screen-mybookings" class="screen">
+    <div class="card">
+      <h2 class="section-title">ご予約の確認・キャンセル</h2>
+      <div id="mybookings-list"><div class="loading">読み込み中…</div></div>
+    </div>
+    <button class="btn secondary" onclick="goTo('menu')">← メニュー選択に戻る</button>
   </div>
 
   <div id="screen-day" class="screen">
@@ -491,6 +502,75 @@ async function submitBooking(){
     errBox.classList.add('show');
     btn.disabled = false;
     btn.textContent = 'この内容で予約する';
+  }
+}
+
+async function loadMyBookings(){
+  const list = document.getElementById('mybookings-list');
+  list.innerHTML = '<div class="loading">読み込み中…</div>';
+  const lineUserId = state.profile ? state.profile.userId : '';
+  if(!lineUserId){
+    list.innerHTML = '<div class="empty">お客様情報を確認できませんでした。</div>';
+    return;
+  }
+  try{
+    const res = await apiGet({ action:'myBookings', lineUserId: lineUserId });
+    if(!res.ok){
+      list.innerHTML = '<div class="empty">取得に失敗しました。</div>';
+      return;
+    }
+    if(!res.bookings || res.bookings.length === 0){
+      list.innerHTML = '<div class="empty">現在ご予約はありません。</div>';
+      return;
+    }
+    list.innerHTML = '';
+    const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' });
+    res.bookings.forEach(b=>{
+      const isSameDay = b.isoDate <= todayStr;
+      const row = document.createElement('div');
+      row.className = 'menu-item';
+      row.style.cursor = 'default';
+      row.innerHTML =
+        '<div><div class="menu-name">'+b.dateLabel+' '+b.timeLabel+'〜</div>'+
+        '<div class="menu-sub">'+b.title+'</div></div>';
+      const btn = document.createElement('button');
+      btn.className = 'btn secondary';
+      btn.style.cssText = 'margin:0;width:auto;padding:8px 14px;font-size:13px;';
+      btn.textContent = 'キャンセル';
+      btn.onclick = ()=> handleCancelClick(b, isSameDay, row, btn);
+      row.appendChild(btn);
+      list.appendChild(row);
+    });
+  }catch(e){
+    list.innerHTML = '<div class="empty">通信エラーが発生しました。</div>';
+  }
+}
+
+async function handleCancelClick(b, isSameDay, row, btn){
+  if(isSameDay){
+    alert('当日のキャンセルはLINEでご連絡ください。');
+    return;
+  }
+  if(!confirm(b.dateLabel+' '+b.timeLabel+'〜のご予約をキャンセルします。よろしいですか？')) return;
+  btn.disabled = true;
+  btn.textContent = '処理中…';
+  try{
+    const res = await apiPost({
+      action: 'cancel',
+      eventId: b.eventId,
+      lineUserId: state.profile ? state.profile.userId : ''
+    });
+    if(!res.ok){
+      alert(res.sameDay ? '当日のキャンセルはLINEでご連絡ください。' : (res.error || 'キャンセルに失敗しました。'));
+      btn.disabled = false;
+      btn.textContent = 'キャンセル';
+      return;
+    }
+    row.innerHTML = '<div class="menu-sub">キャンセルされました</div>';
+  }catch(e){
+    alert('通信エラーが発生しました。電波の良い場所で再度お試しください。');
+    btn.disabled = false;
+    btn.textContent = 'キャンセル';
   }
 }
 
